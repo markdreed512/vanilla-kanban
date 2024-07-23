@@ -1,5 +1,9 @@
 
 document.querySelector('#add_new_todo_btn').addEventListener('click', addNewTodo)
+document.querySelector('.board').addEventListener('dragover', e => e.preventDefault())
+document.querySelectorAll('.tasks').forEach(column => {
+    this.addEventListener('drop', handleDrop)
+})
 let todos = []
 function saveTodoTasks(){
     todos = []
@@ -45,6 +49,7 @@ function handleTitleClick(e){
     titleInput.classList.remove('hidden')
     e.target.classList.add('hidden')
 }
+
 function handleDescriptionClick(e){
     const uid = e.target.id.split('_')[1]
     const text = e.target.innerText
@@ -57,18 +62,26 @@ function handleDeleteClick(e){
     const uid = e.target.id.split('_')[1]
     console.log('delete ' + uid)
 }
+let draggedCard
+function handleDragStart(e){
+    draggedCard = e.target
+}
+function handleDrop(e){
+    console.log("test123")
+    e.target.append(draggedCard)
+}
 function addTaskListeners(id){
-    console.log('adding listener for title: ', id)
     document.querySelector(`#title_${id}`).addEventListener('blur', handleTitleBlur)
     document.querySelector(`#h2_${id}`).addEventListener('click', handleTitleClick)
     document.querySelector(`#description_${id}`).addEventListener('blur', handleDescriptionBlur)
     document.querySelector(`#p_${id}`).addEventListener('click', handleDescriptionClick)
     document.querySelector(`#delete_${id}`).addEventListener('click', handleDeleteClick)
+    document.querySelector(`#task_${id}`).addEventListener('dragstart', handleDragStart)
 }
 function addNewTodo(){
     const uid = Date.now()
     const newTask = `
-        <div class="task" id="task_${uid}">
+        <div class="task" id="task_${uid}" draggable="true">
             <button id="delete_${uid}" class="delete-btn">X</button>
             <input id="title_${uid}" type="text" placeholder="title"/>
             <h2 id="h2_${uid}" class="hidden"></h2>
@@ -83,7 +96,7 @@ function displayStoredTasks(){
     const storedTasks = JSON.parse(localStorage.getItem('kanbanTodos'))
     storedTasks.forEach(task => {
         const taskHtml = `
-            <div class="task" id="task_${task.uid}">
+            <div class="task" id="task_${task.uid}" draggable="true">
                 <button id="delete_${task.uid}" class="delete-btn">X</button>
                 <input id="title_${task.uid}" type="text" placeholder="title" class="hidden"/>
                 <h2 id="h2_${task.uid}">${task.title}</h2>
