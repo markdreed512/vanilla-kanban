@@ -32,6 +32,7 @@ body{
         height: 100%;
         border-top: 1px solid;
         margin-top: 10px;
+        padding-top: 10px;
     }
 }
 #todo_column h2{
@@ -57,12 +58,13 @@ body{
     aspect-ratio: 1 / 0.75;
     background: hsl(350, 100%, 92%);
     margin: 10px 0;
-    padding: 5px;
+    padding: 10px;
     text-align: left;
     display: flex;
     flex-direction: column;
     gap: 5px;
     border-radius: 5px;
+    box-shadow: 0px 2px 5px #777;
     input,
     textarea{
         width: 100%;
