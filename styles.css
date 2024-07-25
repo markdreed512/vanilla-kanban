@@ -12,6 +12,7 @@ h1{
 body{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: #ebffff;
 }
 .hidden{
     display: none;
@@ -20,6 +21,7 @@ body{
     max-width: 800px;
     margin: 0 auto;
     display: flex;
+    background-color: #fff;
 }
 .column{
     flex: 1;
@@ -53,13 +55,14 @@ body{
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 0.75;
-    background: pink;
+    background: hsl(350, 100%, 92%);
     margin: 10px 0;
     padding: 5px;
     text-align: left;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    border-radius: 5px;
     input,
     textarea{
         width: 100%;
@@ -81,4 +84,29 @@ body{
     right: 10px;
     border: none;
     background: rgba(0,0,0,0)
+}
+#complete_tasks{
+    .task{
+        background-image: url('./mark.jpg');
+        background-size: cover;
+        background-position-y: center;
+        color: rgba(0, 0, 0, 0)
+    }
+    .task:hover{
+        background-image: none;
+        color: #000;
+    }
+    .task:hover::before{
+        content: "";
+    }
+    .task::before{
+        content: "YOU DID IT!!";
+        position: absolute;
+        top: 45%;
+        left: 30px;
+        color: #c4ffbc;
+        font-size: 24px;
+        font-family: "Comic Neue", cursive;
+        font-weight: 600;
+    }
 }
