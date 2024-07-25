@@ -90,7 +90,8 @@ body{
         background-image: url('./mark.jpg');
         background-size: cover;
         background-position-y: center;
-        color: rgba(0, 0, 0, 0)
+        color: rgba(0, 0, 0, 0);
+        background-color: rgb(255, 215, 141);
     }
     .task:hover{
         background-image: none;
@@ -108,5 +109,10 @@ body{
         font-size: 24px;
         font-family: "Comic Neue", cursive;
         font-weight: 600;
+    }
+}
+#in_progress_tasks{
+    .task{
+        background-color: rgb(177, 255, 200)
     }
 }
