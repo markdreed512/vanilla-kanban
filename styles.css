@@ -87,34 +87,127 @@ body{
     border: none;
     background: rgba(0,0,0,0)
 }
-#complete_tasks{
-    .task{
-        background-image: url('./mark.jpg');
-        background-size: cover;
-        background-position-y: center;
-        color: rgba(0, 0, 0, 0);
-        background-color: rgb(255, 215, 141);
-    }
-    .task:hover{
-        background-image: none;
-        color: #000;
-    }
-    .task:hover::before{
-        content: "";
-    }
-    .task::before{
-        content: "YOU DID IT!!";
-        position: absolute;
-        top: 45%;
-        left: 30px;
-        color: #c4ffbc;
-        font-size: 24px;
-        font-family: "Comic Neue", cursive;
-        font-weight: 600;
-    }
-}
+
 #in_progress_tasks{
     .task{
         background-color: rgb(177, 255, 200)
     }
+}
+body {
+    transition: background-color 0.3s ease;
+}
+
+.mark-mode {
+    #complete_tasks{
+        .task{
+            background-image: url('./mark.jpg');
+            background-size: cover;
+            background-position-y: center;
+            color: rgba(0, 0, 0, 0);
+        }
+        .task:hover{
+            background-image: none;
+            color: #000;
+        }
+        .task:hover::before{
+            content: "";
+        }
+        .task::before{
+            content: "YOU DID IT!!";
+            position: absolute;
+            top: 45%;
+            left: 30px;
+            color: #c4ffbc;
+            font-size: 24px;
+            font-family: "Comic Neue", cursive;
+            font-weight: 600;
+        }
+    }
+}
+#complete_tasks{
+        .task{
+            background-image: none;
+            color: #000;
+            background-color: rgb(255, 215, 141);
+        }
+        .task::before{
+            content: "";
+        }
+    }
+.switch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 50px;
+    top: 35px;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+.switch-label {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 17px;
+    background-color: #ccc;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.switch-label::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s;
+}
+
+.toggle-switch:checked + .switch-label {
+    background-color: #66bb6a;
+}
+
+.toggle-switch:checked + .switch-label::after {
+    transform: translateX(14px);
+}
+
+.switch-container::before{
+    content: "Mark Mode";
+    position: absolute;
+    top: 20px;
+    width: 100px;
+    font-size: 10px;
+}
+.mark-mode .switch-container::after{
+    content: "ENGAGED";
+    position: absolute;
+    top: 32px;
+    width: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    animation: engage;
+    animation-duration: 1.5s;
+}
+@keyframes engage {
+    0%{
+        color: #000; 
+        font-size: 14px;
+    }
+    20%{color: #fff}
+    40%{color: #000}
+    50%{font-size: 18px;}
+    60%{color: #fff}
+    80%{
+        color: #000;
+        font-size: 14px;
+    }
+    90%{color: #fff}
+    100%{color: #000}
 }

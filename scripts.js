@@ -1,5 +1,6 @@
 document.querySelector('#add_new_todo_btn').addEventListener('click', addNewTodo)
 document.querySelector('.board').addEventListener('dragover', e => e.preventDefault())
+document.getElementById('toggle-switch').addEventListener('change', handleToggle);
 document.querySelectorAll('.tasks').forEach(column => {
     this.addEventListener('drop', handleDrop)
 })
@@ -109,6 +110,13 @@ function handleDragStart(e){
 function handleDrop(e){
     e.target.append(draggedCard)
     saveAllTasks()
+}
+function handleToggle(){
+    if (this.checked) {
+        document.body.classList.add('mark-mode');
+    } else {
+        document.body.classList.remove('mark-mode');
+    }
 }
 function addTaskListeners(id){
     document.querySelector(`#title_${id}`).addEventListener('blur', handleTitleBlur)
